@@ -1,0 +1,29 @@
+{#
+  AICE Design Language — Two-Thirds Layout
+
+  Use for: content pages that always require a caption and description block
+  alongside the two-thirds body column. Functionally similar to article.njk
+  but caption and description are always rendered (not optional).
+
+  Expected template variables:
+    pageTitle   — page heading (h1) and browser tab prefix
+    caption     — caption above h1 (required)
+    description — lead paragraph (required)
+    breadcrumbs — array of { text, href } for the breadcrumb bar
+    supportBox  — { title?, description?, items? } — enables the support box (optional)
+#}
+{% extends "layouts/page.njk" %}
+
+{% block content %}
+<div class="defra-width-container">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-xl">{{ caption }}</span>
+      <h1 class="govuk-heading-xl">{{ pageTitle }}</h1>
+      <p class="govuk-body-l">{{ description }}</p>
+      {% block articleContent %}{% endblock %}
+      {% include "partials/support-box.njk" %}
+    </div>
+  </div>
+</div>
+{% endblock %}

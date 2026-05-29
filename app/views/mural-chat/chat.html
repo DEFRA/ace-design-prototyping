@@ -1,0 +1,58 @@
+{% extends "layouts/mural-chat/page.njk" %}
+
+{% set pageTitle = "Chat" %}
+
+{% block content %}
+
+<div class="defra-width-container">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <a href="/mural-chat/select-mural" class="govuk-back-link">Back</a>
+
+      <span class="govuk-caption-l">Chat session</span>
+      <h1 class="govuk-heading-l">{{ data['mural-board-id'] or 'Board: Q1 Planning Session' }}</h1>
+
+      <div class="app-chat">
+        <div class="app-chat__messages">
+
+          {# Initial greeting #}
+          <div class="app-chat__message app-chat__message--agent">
+            <div class="app-chat__message-content">
+              Hi! I've reviewed your Mural board. Ask me anything about the content, and I'll help explain what's there, summarise key themes, or answer specific questions.
+            </div>
+          </div>
+
+          {# Display chat history #}
+          {% if data['chat-messages'] %}
+            {% for message in data['chat-messages'] %}
+            <div class="app-chat__message app-chat__message--{{ message.role }}">
+              <div class="app-chat__message-content">
+                {{ message.text }}
+              </div>
+            </div>
+            {% endfor %}
+          {% endif %}
+
+        </div>
+
+        {# Input area #}
+        <form class="app-chat__input-area" action="/mural-chat/chat" method="post">
+          <textarea
+            name="chat-input"
+            class="app-chat__textarea"
+            placeholder="Ask a question about the board…"
+            aria-label="Your message"></textarea>
+          <button type="submit" class="govuk-button">Send</button>
+        </form>
+      </div>
+
+      <p class="govuk-body govuk-!-margin-top-3">
+        <a href="/mural-chat/select-mural" class="govuk-link">Choose a different board</a>
+      </p>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

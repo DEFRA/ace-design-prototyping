@@ -1,0 +1,32 @@
+{% extends "layouts/mural-chat/hub.njk" %}
+
+{% set pageTitle = "Mural Board Assistant" %}
+
+{% block content %}
+
+<div class="defra-hero">
+  <div class="defra-width-container">
+    <h1 class="govuk-heading-xl">Mural Board Assistant</h1>
+    <p class="govuk-body-l">Ask questions about your Mural boards. Our AI assistant reads and explains the content, answers your questions, and helps you extract information from your collaborative designs.</p>
+  </div>
+</div>
+
+<div class="defra-width-container govuk-!-margin-top-5">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h2 class="govuk-heading-m">How it works</h2>
+      <ol class="govuk-list govuk-list--number">
+        <li>Sign in with your Defra account</li>
+        <li>Authorise the app to access your Mural boards</li>
+        <li>Select a board to analyse</li>
+        <li>Chat with the AI to ask questions about the content</li>
+      </ol>
+
+      <form action="/mural-chat/connect-mural" method="get">
+        <button type="submit" class="govuk-button" data-module="govuk-button">Sign in</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

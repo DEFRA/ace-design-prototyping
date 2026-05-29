@@ -1,0 +1,56 @@
+{% extends "layouts/mural-chat/hub.njk" %}
+
+{% set pageTitle = "Service home" %}
+
+{% block content %}
+
+<div class="defra-hero">
+  <div class="defra-width-container">
+    <h1 class="govuk-heading-xl">Welcome back</h1>
+    <p class="govuk-body-l">Select your Mural account status to continue.</p>
+  </div>
+</div>
+
+<div class="defra-width-container govuk-!-margin-top-5">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h2 class="govuk-heading-m">Prototype mode</h2>
+      <p class="govuk-body">This prototype allows you to simulate two paths:</p>
+
+      <form action="/mural-chat/home" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <div class="govuk-radios" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="mural-connected" name="mural-connected" type="radio" value="true" aria-describedby="mural-connected-item-hint">
+                <label class="govuk-label govuk-radios__label" for="mural-connected">
+                  I have already connected my Mural account
+                </label>
+                <div id="mural-connected-item-hint" class="govuk-hint govuk-radios__hint">
+                  Skip OAuth and go straight to board selection
+                </div>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="mural-connected-2" name="mural-connected" type="radio" value="false" aria-describedby="mural-connected-2-item-hint">
+                <label class="govuk-label govuk-radios__label" for="mural-connected-2">
+                  I have not yet connected my Mural account
+                </label>
+                <div id="mural-connected-2-item-hint" class="govuk-hint govuk-radios__hint">
+                  Go through the OAuth connection flow
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

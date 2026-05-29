@@ -1,0 +1,52 @@
+{#
+  AICE Design Language — Article Layout
+
+  Use for: standard content pages — guides, reference articles, how-to pages.
+  Renders a two-thirds column with an optional caption, h1, lead paragraph,
+  and an optional support box at the bottom.
+
+  Extends the base page layout; breadcrumbs are driven by the `breadcrumbs`
+  variable (array of { text, href }) which the base layout renders in the
+  full-bleed green breadcrumb bar.
+
+  Usage:
+    {% extends "layouts/article.njk" %}
+
+    {% set pageTitle = "Page title" %}
+    {% set breadcrumbs = [
+      { text: "Home", href: "/" },
+      { text: "Page title", href: "/page" }
+    ] %}
+
+    {% block articleContent %}
+      <p class="govuk-body">Your content here.</p>
+    {% endblock %}
+
+  Expected template variables:
+    pageTitle       — browser tab prefix and h1 heading (when using articleHeading block)
+    caption         — small caption above h1 (optional)
+    description     — lead paragraph below h1 (optional)
+    breadcrumbs     — array of { text, href } for the breadcrumb bar
+    supportBox      — { title?, description?, items? } — enables the support box (optional)
+#}
+{% extends "layouts/page.njk" %}
+
+{% block content %}
+<div class="defra-width-container">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% block articleHeading %}
+        {% if caption %}<span class="govuk-caption-xl">{{ caption }}</span>{% endif %}
+        <h1 class="govuk-heading-xl">{{ pageTitle }}</h1>
+        {% if description %}<p class="govuk-body-l">{{ description }}</p>{% endif %}
+      {% endblock %}
+
+      {% block articleContent %}{% endblock %}
+
+      {% include "partials/support-box.njk" %}
+
+    </div>
+  </div>
+</div>
+{% endblock %}

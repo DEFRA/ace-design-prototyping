@@ -1,0 +1,93 @@
+@use '../variables/colours' as *;
+
+// ===== Defra Alert Component =====
+// Based on MOJ Alert design pattern
+
+.defra-alert {
+  display: grid;
+  margin-bottom: 30px; // govuk-spacing(6)
+  padding: 10px; // govuk-spacing(2)
+  border: 5px solid transparent;
+  background: $govuk-white;
+  grid-template-columns: min-content 1fr;
+  gap: 10px; // govuk-spacing(2)
+  font-family: Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  &:focus {
+    outline: 3px solid $govuk-focus-colour; // $govuk-focus-width = 3px
+  }
+}
+
+.defra-alert__icon {
+  display: block;
+  width: 1.875rem; // govuk-px-to-rem(30px)
+  height: 1.875rem; // govuk-px-to-rem(30px)
+  fill: currentcolor;
+}
+
+.defra-alert__content {
+  display: block;
+  padding-top: 0.3125rem; // govuk-px-to-rem(5px)
+  overflow: hidden;
+  color: $govuk-black;
+  font-size: 1.1875rem; // govuk-font-size(19) — tablet+
+  line-height: 1.3157894737;
+
+  @media (min-width: 40.0625em) { // govuk-media-query($from: tablet)
+    padding-top: 0.125rem; // govuk-px-to-rem(2px)
+  }
+}
+
+.defra-alert__heading {
+  display: block;
+  margin-top: 0;
+  margin-bottom: 0.3125rem; // govuk-px-to-rem(5px)
+  color: $govuk-black; // govuk-text-colour
+  font-size: 1.5rem; // govuk-font-size(24) — tablet+
+  line-height: 1.25;
+  font-weight: 700; // govuk-typography-weight-bold
+
+  @media (min-width: 40.0625em) { // govuk-media-query($from: tablet)
+    margin-bottom: 0.1875rem; // govuk-px-to-rem(3px)
+  }
+}
+
+.defra-alert__content p:last-child,
+.defra-alert__content a:last-child,
+.defra-alert__content ul:last-child {
+  margin-bottom: 0;
+}
+
+// ── Warning variant ──
+.defra-alert--warning {
+  border-color: #ff8c00;
+  color: #ff8c00;
+
+  .defra-alert__content a,
+  .defra-alert__content .govuk-link {
+    text-decoration: underline;
+    text-decoration-thickness: max(1px, 0.0625rem);
+    text-underline-offset: 0.1578em;
+
+    &:link,
+    &:visited {
+      color: #ff8c00;
+    }
+
+    &:hover {
+      color: #ff8c00;
+      text-decoration-thickness: max(3px, 0.1875rem, 0.12em);
+      text-decoration-skip-ink: none;
+    }
+
+    &:focus {
+      outline: 3px solid transparent;
+      color: $govuk-black;
+      background-color: $govuk-focus-colour;
+      box-shadow: 0 -2px $govuk-focus-colour, 0 4px $govuk-black;
+      text-decoration: none;
+    }
+  }
+}

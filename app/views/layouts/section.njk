@@ -1,0 +1,43 @@
+{#
+  AICE Design Language — Section Layout (with sidebar navigation)
+
+  Use for: content pages that belong to a multi-page section where users
+  need to navigate between related pages. Renders a one-third sidebar
+  containing the section-navigation partial and a two-thirds content column.
+
+  Expected template variables:
+    pageTitle   — page heading (h1) and browser tab prefix
+    caption     — small caption above h1 (optional)
+    description — lead paragraph below h1 (optional)
+    breadcrumbs — array of { text, href } for the breadcrumb bar
+    sectionNav  — array of sections for the sidebar nav:
+                    [{ title, items: [{ text, href }] }]
+                  consumed by partials/section-navigation.njk
+    currentUrl  — current page path; used for active nav item matching
+    supportBox  — { title?, description?, items? } — enables the support box (optional)
+#}
+{% extends "layouts/page.njk" %}
+
+{% block content %}
+<div class="defra-width-container">
+  <div class="govuk-grid-row">
+
+    {# Sidebar — section navigation ──────────────────────────────────────────
+      The .app-sub-navigation becomes sticky (position: sticky; top: 20px)
+      on viewports ≥ 648px. On narrower screens it stacks above the content.
+    ─────────────────────────────────────────────────────────────────────── #}
+    <div class="govuk-grid-column-one-third">
+      {% include "partials/section-navigation.njk" %}
+    </div>
+
+    <div class="govuk-grid-column-two-thirds">
+      {% if caption %}<span class="govuk-caption-xl">{{ caption }}</span>{% endif %}
+      <h1 class="govuk-heading-xl">{{ pageTitle }}</h1>
+      {% if description %}<p class="govuk-body-l">{{ description }}</p>{% endif %}
+      {% block articleContent %}{% endblock %}
+      {% include "partials/support-box.njk" %}
+    </div>
+
+  </div>
+</div>
+{% endblock %}

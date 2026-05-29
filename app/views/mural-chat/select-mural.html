@@ -1,0 +1,87 @@
+{% extends "layouts/mural-chat/page.njk" %}
+
+{% set pageTitle = "Select a board" %}
+
+{% block content %}
+
+<div class="defra-width-container">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <a href="/mural-chat/home" class="govuk-back-link">Back</a>
+
+      <h1 class="govuk-heading-l">Select a Mural board</h1>
+      <p class="govuk-body">Choose the board you'd like to chat about.</p>
+
+      <form action="/mural-chat/select-mural" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <div class="govuk-radios" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="mural-board-id" name="mural-board-id" type="radio" value="board-1" aria-describedby="mural-board-id-item-hint">
+                <label class="govuk-label govuk-radios__label" for="mural-board-id">
+                  Q1 Planning Session
+                </label>
+                <div id="mural-board-id-item-hint" class="govuk-hint govuk-radios__hint">
+                  Led by Product, 5 regions, 127 sticky notes
+                </div>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="mural-board-id-2" name="mural-board-id" type="radio" value="board-2" aria-describedby="mural-board-id-2-item-hint">
+                <label class="govuk-label govuk-radios__label" for="mural-board-id-2">
+                  User Research Findings
+                </label>
+                <div id="mural-board-id-2-item-hint" class="govuk-hint govuk-radios__hint">
+                  Research team's consolidated insights, 8 themes
+                </div>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="mural-board-id-3" name="mural-board-id" type="radio" value="board-3" aria-describedby="mural-board-id-3-item-hint">
+                <label class="govuk-label govuk-radios__label" for="mural-board-id-3">
+                  Service Architecture Review
+                </label>
+                <div id="mural-board-id-3-item-hint" class="govuk-hint govuk-radios__hint">
+                  Tech lead session, system flows and dependencies
+                </div>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="mural-board-id-4" name="mural-board-id" type="radio" value="board-4" aria-describedby="mural-board-id-4-item-hint">
+                <label class="govuk-label govuk-radios__label" for="mural-board-id-4">
+                  Design Critique Notes
+                </label>
+                <div id="mural-board-id-4-item-hint" class="govuk-hint govuk-radios__hint">
+                  Weekly design sync, component updates
+                </div>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="mural-board-id-5" name="mural-board-id" type="radio" value="board-5" aria-describedby="mural-board-id-5-item-hint">
+                <label class="govuk-label govuk-radios__label" for="mural-board-id-5">
+                  Accessibility Audit
+                </label>
+                <div id="mural-board-id-5-item-hint" class="govuk-hint govuk-radios__hint">
+                  WCAG compliance review, 23 issues identified
+                </div>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="mural-board-id-6" name="mural-board-id" type="radio" value="board-6" aria-describedby="mural-board-id-6-item-hint">
+                <label class="govuk-label govuk-radios__label" for="mural-board-id-6">
+                  Sprint Retrospective
+                </label>
+                <div id="mural-board-id-6-item-hint" class="govuk-hint govuk-radios__hint">
+                  Team reflections, action items
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">Open board</button>
+
+      </form>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

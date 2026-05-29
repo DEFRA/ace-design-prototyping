@@ -1,0 +1,65 @@
+{% extends "layouts/mural-chat/page.njk" %}
+
+{% set pageTitle = "Connect Mural account" %}
+
+{% block content %}
+
+<div class="defra-width-container">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <a href="/mural-chat/home" class="govuk-back-link">Back</a>
+
+      <h1 class="govuk-heading-l">Connect your Mural account</h1>
+
+      <div class="govuk-warning-text">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <strong class="govuk-warning-text__text">
+          <span class="govuk-visually-hidden">Warning</span>
+          You are about to be taken to Mural to authorise this app to access your boards. This is a prototype—you will not be redirected.
+        </strong>
+      </div>
+
+      <h2 class="govuk-heading-m">Prototype mode</h2>
+      <p class="govuk-body">Choose what happens when you continue:</p>
+
+      <form action="/mural-chat/connect-mural" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <div class="govuk-radios" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="oauth-action" name="oauth-action" type="radio" value="success" aria-describedby="oauth-action-item-hint">
+                <label class="govuk-label govuk-radios__label" for="oauth-action">
+                  Simulate successful connection
+                </label>
+                <div id="oauth-action-item-hint" class="govuk-hint govuk-radios__hint">
+                  Mural will be connected and you'll see your boards
+                </div>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="oauth-action-2" name="oauth-action" type="radio" value="failure" aria-describedby="oauth-action-2-item-hint">
+                <label class="govuk-label govuk-radios__label" for="oauth-action-2">
+                  Simulate failed connection
+                </label>
+                <div id="oauth-action-2-item-hint" class="govuk-hint govuk-radios__hint">
+                  An error will be shown
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">Continue to Mural</button>
+
+      </form>
+
+      <form action="/mural-chat/home" method="get" style="display: inline; margin-left: 15px;">
+        <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">Cancel</button>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

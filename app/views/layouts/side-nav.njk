@@ -1,0 +1,36 @@
+{#
+  AICE Design Language — Side Navigation Layout
+
+  Use for: content pages with a persistent left-rail navigation listing
+  the sections of a manual or reference guide. Renders a one-quarter sidebar
+  using a navigation partial and a three-quarters content area.
+
+  Expected template variables:
+    pageTitle  — page heading (h1) and browser tab prefix
+    breadcrumbs — array of { text, href } for the breadcrumb bar (optional)
+    currentUrl — current page path; used for active nav item matching
+    supportBox — { title?, description?, items? } — enables the support box (optional)
+#}
+{% extends "layouts/page.njk" %}
+
+{% block content %}
+<div class="defra-width-container">
+  <div class="govuk-grid-row">
+
+    {# Sidebar — manual section navigation ───────────────────────────────────
+      Uses govuk-list with govuk-link items. aria-current is applied via
+      the `currentUrl` template variable compared against each item's href.
+    ─────────────────────────────────────────────────────────────────────── #}
+    <div class="govuk-grid-column-one-quarter">
+      {% include "partials/navigation.njk" %}
+    </div>
+
+    <div class="govuk-grid-column-three-quarters">
+      <h1 class="govuk-heading-xl">{{ pageTitle }}</h1>
+      {% block articleContent %}{% endblock %}
+      {% include "partials/support-box.njk" %}
+    </div>
+
+  </div>
+</div>
+{% endblock %}

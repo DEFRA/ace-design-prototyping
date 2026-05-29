@@ -1,5 +1,5 @@
 {
-  "serviceName": "ace-design-prototyping",
+  "serviceName": "AICE Design Prototyping",
   "plugins": {
     "govuk-frontend": {
       "rebrand": true

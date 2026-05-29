@@ -1,0 +1,23 @@
+// AICE Design Language — GOV.UK Prototype Kit SCSS overrides
+//
+// The prototype kit automatically picks up this file before compiling
+// govuk-frontend, allowing brand tokens to be set before any component
+// SCSS is generated. This is the correct place to override GDS defaults.
+//
+// Reference: https://prototype-kit.service.gov.uk/docs/sass-and-css
+//
+// ── Global ────────────────────────────────────────────────────────────────────
+$govuk-global-styles: true;
+
+// ── Typography ────────────────────────────────────────────────────────────────
+// Defra uses Inter as its primary typeface, falling back to Arial.
+$govuk-font-family: ("Inter", "Arial", sans-serif);
+
+// ── Brand colour ──────────────────────────────────────────────────────────────
+// $govuk-brand-colour drives focus rings and other govuk component accents.
+// Set to $defra-green-aa (#00a33b) — AA contrast on white for large text.
+$govuk-brand-colour: #00a33b;
+
+// ── Page width ────────────────────────────────────────────────────────────────
+// Widen the default govuk-width-container to match AICE's defra-width-container.
+$govuk-page-width: 1200px;

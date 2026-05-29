@@ -1,0 +1,32 @@
+{#
+  AICE Design Language — Hub / Entry Page Layout
+
+  Use for: top-level landing pages and major section gateways.
+  Extends the base page layout. Overrides the main block to:
+    - Omit the breadcrumb bar (hub pages use the hero instead)
+    - Set padding-top: 0 on the main wrapper so .defra-hero sits flush below nav
+    - Set overflow-x: visible so the hero's 100vw bleed works correctly
+
+  Usage:
+    {% extends "layouts/hub.njk" %}
+    {% block content %}
+      <div class="defra-hero">
+        <div class="defra-width-container">
+          <h1 class="govuk-heading-xl">Page title</h1>
+          <p class="govuk-body-l">Description</p>
+        </div>
+      </div>
+      <div class="defra-width-container govuk-!-margin-top-6">
+        ...content...
+      </div>
+    {% endblock %}
+
+  Note: parent must not have overflow-x: hidden at html/body level for hero bleed to work.
+#}
+{% extends "layouts/page.njk" %}
+
+{% block main %}
+<main class="govuk-main-wrapper govuk-main-wrapper--hub" id="main-content" style="padding-top: 0; overflow-x: visible;">
+  {% block content %}{% endblock %}
+</main>
+{% endblock %}

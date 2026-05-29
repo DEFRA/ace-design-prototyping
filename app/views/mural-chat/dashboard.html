@@ -1,0 +1,30 @@
+{% extends "layouts/mural-chat/page.njk" %}
+
+{% set pageTitle = "Dashboard" %}
+
+{% block content %}
+
+<div class="defra-width-container govuk-!-margin-top-6">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      <h1 class="govuk-heading-xl">Dashboard</h1>
+
+      <ul class="defra-tile-grid defra-tile-grid--half">
+        <li>
+          <div class="defra-tile">
+            <h2 class="govuk-heading-s defra-tile__title">
+              <a class="defra-tile__link" href="/mural-chat/select-mural">Chat over board</a>
+            </h2>
+            <p class="govuk-body-s defra-tile__body">
+              Select a Mural board and ask questions about its content using the AI assistant.
+            </p>
+          </div>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

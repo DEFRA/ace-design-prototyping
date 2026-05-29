@@ -1,0 +1,15 @@
+{#
+  Mural Board Assistant — Hub / Entry Page Layout
+
+  Extends the AICE hub layout with mural-chat-specific overrides:
+    - Sets the service name to "Mural Assistant"
+    - Suppresses the prototype collection service navigation
+    - Hero sits flush below the Defra header with no secondary nav bar
+
+  Mural-chat hub pages (the landing page and service home) extend this layout.
+#}
+{% extends "layouts/hub.njk" %}
+
+{% set hideServiceNavigation = true %}
+{% set serviceName = "Mural Assistant" %}
+{% set serviceUrl = "/mural-chat" %}

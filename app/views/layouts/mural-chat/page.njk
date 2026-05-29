@@ -1,0 +1,22 @@
+{#
+  Mural Board Assistant — Base Page Layout
+
+  Extends the AICE base page layout with mural-chat-specific overrides:
+    - Sets the service name to "Mural Assistant"
+    - Suppresses the prototype collection service navigation
+    - Shows the mural-chat service navigation when the user is signed in
+
+  All mural-chat content pages extend this layout.
+#}
+{% extends "layouts/page.njk" %}
+
+{% set hideServiceNavigation = true %}
+{% set serviceName = "Mural Assistant" %}
+{% set serviceUrl = "/mural-chat" %}
+
+{% block header %}
+{{ super() }}
+{% if data['mural-connected'] === 'true' %}
+{% include "partials/mural-chat-service-navigation.njk" %}
+{% endif %}
+{% endblock %}

@@ -1,20 +1,34 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/hub.njk" %}
 
-{% set pageName="Home" %}
+{% set pageTitle = serviceName %}
 
 {% block content %}
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-
-    {% include "govuk-prototype-kit/includes/homepage-top.njk" %}
-
-    <h1 class="govuk-heading-xl">
-      {{ serviceName }}
-    </h1>
-
-    {% include "govuk-prototype-kit/includes/homepage-bottom.njk" %}
+<div class="defra-hero">
+  <div class="defra-width-container">
+    <h1 class="govuk-heading-xl">AICE Design Prototyping</h1>
+    <p class="govuk-body-l">Prototypes for AICE (AI Capability and Enablement) digital services using the Defra design language.</p>
   </div>
 </div>
 
+<div class="defra-width-container govuk-!-margin-top-6">
+
+  <h2 class="govuk-heading-l">Available prototypes</h2>
+
+  <ul class="defra-tile-grid">
+    <li>
+      <div class="defra-tile">
+        <h3 class="govuk-heading-s defra-tile__title">
+          <a class="defra-tile__link" href="/mural-chat">Mural Board Assistant</a>
+        </h3>
+        <p class="govuk-body-s defra-tile__body">
+          Chat interface for reading and asking questions about Mural boards using an AI agent.
+        </p>
+      </div>
+    </li>
+  </ul>
+
+</div>
+
 {% endblock %}
+
