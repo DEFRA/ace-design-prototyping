@@ -1,12 +1,8 @@
-{% extends "layouts/mural-chat/page.njk" %}
+{% extends "layouts/mural-chat/two-thirds.njk" %}
 
 {% set pageTitle = "Connection error" %}
 
-{% block content %}
-
-<div class="defra-width-container">
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+{% block pageContent %}
 
       <a href="/mural-chat/connect-mural" class="govuk-back-link">Back</a>
 
@@ -41,9 +37,5 @@
       <form action="/mural-chat/connect-mural" method="get">
         <button type="submit" class="govuk-button" data-module="govuk-button">Try again</button>
       </form>
-
-    </div>
-  </div>
-</div>
 
 {% endblock %}

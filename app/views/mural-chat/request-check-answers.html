@@ -1,0 +1,76 @@
+{% extends "layouts/mural-chat/two-thirds.njk" %}
+
+{% set pageTitle = "Check your answers" %}
+
+{% block pageContent %}
+
+      <a href="/mural-chat/request-board-details" class="govuk-back-link">Back</a>
+
+      <h1 class="govuk-heading-l">Check your answers before submitting</h1>
+
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Board name</dt>
+          <dd class="govuk-summary-list__value">{{ data['board-name'] }}</dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/mural-chat/request-board-details">Change<span class="govuk-visually-hidden"> board name</span></a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Workspace ID</dt>
+          <dd class="govuk-summary-list__value">{{ data['workspace-id'] }}</dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/mural-chat/request-board-details">Change<span class="govuk-visually-hidden"> workspace ID</span></a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Board ID</dt>
+          <dd class="govuk-summary-list__value">{{ data['board-id'] }}</dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/mural-chat/request-board-details">Change<span class="govuk-visually-hidden"> board ID</span></a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Board Owner</dt>
+          <dd class="govuk-summary-list__value">{{ data['iao-email'] }}</dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/mural-chat/request-board-details">Change<span class="govuk-visually-hidden"> Board Owner email</span></a>
+          </dd>
+        </div>
+      </dl>
+
+      <h2 class="govuk-heading-m">Prototype mode</h2>
+      <p class="govuk-body">Simulate the Mural API cross-reference check:</p>
+
+      <form action="/mural-chat/request-check-answers" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <div class="govuk-radios" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="api-check" name="api-check" type="radio" value="pass">
+                <label class="govuk-label govuk-radios__label" for="api-check">
+                  API checks pass (user and Board Owner both have access)
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="api-check-2" name="api-check" type="radio" value="fail-user">
+                <label class="govuk-label govuk-radios__label" for="api-check-2">
+                  Fail: user does not have access to board
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="api-check-3" name="api-check" type="radio" value="fail-iao">
+                <label class="govuk-label govuk-radios__label" for="api-check-3">
+                  Fail: Board Owner does not have access to board
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">Submit request</button>
+
+      </form>
+
+{% endblock %}

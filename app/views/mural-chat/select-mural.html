@@ -1,12 +1,8 @@
-{% extends "layouts/mural-chat/page.njk" %}
+{% extends "layouts/mural-chat/two-thirds.njk" %}
 
 {% set pageTitle = "Select a board" %}
 
-{% block content %}
-
-<div class="defra-width-container">
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+{% block pageContent %}
 
       <a href="/mural-chat/home" class="govuk-back-link">Back</a>
 
@@ -18,60 +14,25 @@
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset">
             <div class="govuk-radios" data-module="govuk-radios">
+              {% for board in data['mural-boards'] %}
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="mural-board-id" name="mural-board-id" type="radio" value="board-1" aria-describedby="mural-board-id-item-hint">
-                <label class="govuk-label govuk-radios__label" for="mural-board-id">
-                  Q1 Planning Session
+                <input class="govuk-radios__input"
+                  id="mural-board-id{% if not loop.first %}-{{ loop.index }}{% endif %}"
+                  name="mural-board-id"
+                  type="radio"
+                  value="{{ board.id }}"
+                  {% if data['mural-board-id'] === board.id %}checked{% endif %}
+                  {% if board.hint %}aria-describedby="mural-board-id{% if not loop.first %}-{{ loop.index }}{% endif %}-hint"{% endif %}>
+                <label class="govuk-label govuk-radios__label" for="mural-board-id{% if not loop.first %}-{{ loop.index }}{% endif %}">
+                  {{ board.name }}
                 </label>
-                <div id="mural-board-id-item-hint" class="govuk-hint govuk-radios__hint">
-                  Led by Product, 5 regions, 127 sticky notes
+                {% if board.hint %}
+                <div id="mural-board-id{% if not loop.first %}-{{ loop.index }}{% endif %}-hint" class="govuk-hint govuk-radios__hint">
+                  {{ board.hint }}
                 </div>
+                {% endif %}
               </div>
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="mural-board-id-2" name="mural-board-id" type="radio" value="board-2" aria-describedby="mural-board-id-2-item-hint">
-                <label class="govuk-label govuk-radios__label" for="mural-board-id-2">
-                  User Research Findings
-                </label>
-                <div id="mural-board-id-2-item-hint" class="govuk-hint govuk-radios__hint">
-                  Research team's consolidated insights, 8 themes
-                </div>
-              </div>
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="mural-board-id-3" name="mural-board-id" type="radio" value="board-3" aria-describedby="mural-board-id-3-item-hint">
-                <label class="govuk-label govuk-radios__label" for="mural-board-id-3">
-                  Service Architecture Review
-                </label>
-                <div id="mural-board-id-3-item-hint" class="govuk-hint govuk-radios__hint">
-                  Tech lead session, system flows and dependencies
-                </div>
-              </div>
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="mural-board-id-4" name="mural-board-id" type="radio" value="board-4" aria-describedby="mural-board-id-4-item-hint">
-                <label class="govuk-label govuk-radios__label" for="mural-board-id-4">
-                  Design Critique Notes
-                </label>
-                <div id="mural-board-id-4-item-hint" class="govuk-hint govuk-radios__hint">
-                  Weekly design sync, component updates
-                </div>
-              </div>
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="mural-board-id-5" name="mural-board-id" type="radio" value="board-5" aria-describedby="mural-board-id-5-item-hint">
-                <label class="govuk-label govuk-radios__label" for="mural-board-id-5">
-                  Accessibility Audit
-                </label>
-                <div id="mural-board-id-5-item-hint" class="govuk-hint govuk-radios__hint">
-                  WCAG compliance review, 23 issues identified
-                </div>
-              </div>
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="mural-board-id-6" name="mural-board-id" type="radio" value="board-6" aria-describedby="mural-board-id-6-item-hint">
-                <label class="govuk-label govuk-radios__label" for="mural-board-id-6">
-                  Sprint Retrospective
-                </label>
-                <div id="mural-board-id-6-item-hint" class="govuk-hint govuk-radios__hint">
-                  Team reflections, action items
-                </div>
-              </div>
+              {% endfor %}
             </div>
           </fieldset>
         </div>
@@ -80,8 +41,8 @@
 
       </form>
 
-    </div>
-  </div>
-</div>
+      <p class="govuk-body">
+        <a href="/mural-chat/add-board" class="govuk-link">Add a board</a>
+      </p>
 
 {% endblock %}

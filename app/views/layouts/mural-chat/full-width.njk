@@ -1,0 +1,24 @@
+{#
+  Mural Board Assistant — Full-Width Content Layout
+
+  Wraps page content in the standard grid container using the full column.
+  Use for dashboards, tables, and other wide content pages.
+
+  Optional template variables:
+    containerClass — extra class on the width container (e.g. "govuk-!-margin-top-6")
+
+  Usage:
+    {% extends "layouts/mural-chat/full-width.njk" %}
+    {% block pageContent %}...{% endblock %}
+#}
+{% extends "layouts/mural-chat/page.njk" %}
+
+{% block content %}
+<div class="defra-width-container {{ containerClass }}">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      {% block pageContent %}{% endblock %}
+    </div>
+  </div>
+</div>
+{% endblock %}

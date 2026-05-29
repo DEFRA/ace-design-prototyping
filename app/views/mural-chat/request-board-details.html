@@ -1,0 +1,59 @@
+{% extends "layouts/mural-chat/two-thirds.njk" %}
+
+{% set pageTitle = "Board details" %}
+
+{% block pageContent %}
+
+      <a href="/mural-chat/request-mural" class="govuk-back-link">Back</a>
+
+      <h1 class="govuk-heading-l">Enter board details</h1>
+
+      <p class="govuk-body">Provide the details of the Mural board you want to connect to this service.</p>
+
+      <form action="/mural-chat/request-board-details" method="post">
+
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="board-name">
+            Board name
+          </label>
+          <div id="board-name-hint" class="govuk-hint">
+            The name of the Mural board as it appears in your workspace
+          </div>
+          <input class="govuk-input" id="board-name" name="board-name" type="text" value="{{ data['board-name'] }}" aria-describedby="board-name-hint">
+        </div>
+
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="workspace-id">
+            Workspace ID
+          </label>
+          <div id="workspace-id-hint" class="govuk-hint">
+            You can find this in your Mural workspace settings
+          </div>
+          <input class="govuk-input" id="workspace-id" name="workspace-id" type="text" value="{{ data['workspace-id'] }}" aria-describedby="workspace-id-hint">
+        </div>
+
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="board-id">
+            Board ID
+          </label>
+          <div id="board-id-hint" class="govuk-hint">
+            The unique identifier for the board, found in the board URL
+          </div>
+          <input class="govuk-input" id="board-id" name="board-id" type="text" value="{{ data['board-id'] }}" aria-describedby="board-id-hint">
+        </div>
+
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="iao-email">
+            Board Owner
+          </label>
+          <div id="iao-email-hint" class="govuk-hint">
+            The email address of the Board Owner who will approve this request. They must have access to the board.
+          </div>
+          <input class="govuk-input" id="iao-email" name="iao-email" type="email" value="{{ data['iao-email'] }}" aria-describedby="iao-email-hint">
+        </div>
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+{% endblock %}

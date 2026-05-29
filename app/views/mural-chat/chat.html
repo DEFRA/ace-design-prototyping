@@ -1,58 +1,72 @@
-{% extends "layouts/mural-chat/page.njk" %}
+{% extends "layouts/mural-chat/two-thirds.njk" %}
+{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
 
 {% set pageTitle = "Chat" %}
 
-{% block content %}
-
-<div class="defra-width-container">
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+{% block pageContent %}
 
       <a href="/mural-chat/select-mural" class="govuk-back-link">Back</a>
 
       <span class="govuk-caption-l">Chat session</span>
       <h1 class="govuk-heading-l">{{ data['mural-board-id'] or 'Board: Q1 Planning Session' }}</h1>
 
-      <div class="app-chat">
-        <div class="app-chat__messages">
+      {# Conversation history #}
+      <div class="govuk-!-padding-4 app-conversation-container">
 
-          {# Initial greeting #}
-          <div class="app-chat__message app-chat__message--agent">
-            <div class="app-chat__message-content">
-              Hi! I've reviewed your Mural board. Ask me anything about the content, and I'll help explain what's there, summarise key themes, or answer specific questions.
-            </div>
-          </div>
-
-          {# Display chat history #}
-          {% if data['chat-messages'] %}
-            {% for message in data['chat-messages'] %}
-            <div class="app-chat__message app-chat__message--{{ message.role }}">
-              <div class="app-chat__message-content">
-                {{ message.text }}
-              </div>
-            </div>
-            {% endfor %}
-          {% endif %}
-
+        {# Initial greeting (always shown) #}
+        <div class="app-assistant-response govuk-body govuk-!-width-two-thirds">
+          <p>Hi! I've reviewed your Mural board. Ask me anything about the content, and I'll help explain what's there, summarise key themes, or answer specific questions.</p>
         </div>
 
-        {# Input area #}
-        <form class="app-chat__input-area" action="/mural-chat/chat" method="post">
-          <textarea
-            name="chat-input"
-            class="app-chat__textarea"
-            placeholder="Ask a question about the board…"
-            aria-label="Your message"></textarea>
-          <button type="submit" class="govuk-button">Send</button>
-        </form>
+        {# Chat history #}
+        {% if data['chat-messages'] %}
+          {% for message in data['chat-messages'] %}
+
+            {% if message.role === 'user' %}
+              <div class="app-user-question-wrapper">
+                <div class="app-user-question">
+                  <p>{{ message.text }}</p>
+                </div>
+              </div>
+              <p class="govuk-body-s govuk-!-text-align-right govuk-!-margin-top-0"><strong>You</strong></p>
+            {% endif %}
+
+            {% if message.role === 'agent' %}
+              <div class="app-assistant-response govuk-body govuk-!-width-two-thirds">
+                <p>{{ message.text }}</p>
+              </div>
+              <p class="govuk-body-s govuk-!-margin-top-0"><strong>AI assistant</strong></p>
+            {% endif %}
+
+          {% endfor %}
+        {% endif %}
+
       </div>
+
+      {# Input form #}
+      <form action="/mural-chat/chat" method="post" class="govuk-!-margin-top-4">
+        {{ govukTextarea({
+          name: "chat-input",
+          id: "chat-input",
+          label: {
+            text: "Ask a question about the board",
+            classes: "govuk-label--s"
+          },
+          hint: {
+            text: "For example, 'What are the main themes?' or 'Summarise the key decisions.'"
+          }
+        }) }}
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Send",
+            classes: "govuk-button--secondary"
+          }) }}
+        </div>
+      </form>
 
       <p class="govuk-body govuk-!-margin-top-3">
         <a href="/mural-chat/select-mural" class="govuk-link">Choose a different board</a>
       </p>
-
-    </div>
-  </div>
-</div>
 
 {% endblock %}

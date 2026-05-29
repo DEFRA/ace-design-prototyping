@@ -1,0 +1,27 @@
+{% extends "layouts/mural-chat/two-thirds.njk" %}
+
+{% set pageTitle = "Request submitted" %}
+
+{% block pageContent %}
+
+      <div class="govuk-panel govuk-panel--confirmation">
+        <h1 class="govuk-panel__title">Request submitted</h1>
+        <div class="govuk-panel__body">
+          Board {{ data['board-id'] }} is now awaiting approval
+        </div>
+      </div>
+
+      <h2 class="govuk-heading-m">What happens next</h2>
+
+      <p class="govuk-body">We have sent an approval request email to the Board Owner at <strong>{{ data['iao-email'] }}</strong>.</p>
+
+      <p class="govuk-body">The board has been tagged as <strong>'Awaiting Approval'</strong>. Once the Board Owner reviews and approves the request, the board will be available for AI-assisted analysis in this service.</p>
+
+      <h2 class="govuk-heading-m">What you can do now</h2>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li><a href="/mural-chat/dashboard" class="govuk-link">Return to dashboard</a></li>
+        <li><a href="/mural-chat/request-mural" class="govuk-link">Request another board</a></li>
+      </ul>
+
+{% endblock %}

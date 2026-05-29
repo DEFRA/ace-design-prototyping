@@ -1,0 +1,19 @@
+{% extends "layouts/mural-chat/two-thirds.njk" %}
+
+{% set pageTitle = "You cannot request a board" %}
+
+{% block pageContent %}
+
+      <a href="/mural-chat/request-mural" class="govuk-back-link">Back</a>
+
+      <h1 class="govuk-heading-l">You cannot request a Mural board</h1>
+
+      <p class="govuk-body">Only service administrators can request new Mural boards to be connected to this service.</p>
+
+      <p class="govuk-body">If you need a board connected, ask a service admin to submit the request on your behalf.</p>
+
+      <p class="govuk-body">
+        <a href="/mural-chat/dashboard" class="govuk-link">Return to dashboard</a>
+      </p>
+
+{% endblock %}

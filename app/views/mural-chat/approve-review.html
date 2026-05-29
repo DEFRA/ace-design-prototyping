@@ -1,0 +1,73 @@
+{% extends "layouts/mural-chat/two-thirds.njk" %}
+
+{% set pageTitle = "Review Mural board request" %}
+
+{# Use first pending request as the selected board (prototype simplification) #}
+{% set request = data['pending-requests'][0] %}
+
+{% block pageContent %}
+
+  <a href="/mural-chat/approve-requests" class="govuk-back-link">Back</a>
+
+  <h1 class="govuk-heading-l">Review Mural board request</h1>
+
+  <p class="govuk-body">Review the details of this Mural board request before deciding to approve or reject it.</p>
+
+  <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">Board name</dt>
+      <dd class="govuk-summary-list__value">{{ request.boardName }}</dd>
+    </div>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">Workspace ID</dt>
+      <dd class="govuk-summary-list__value">{{ request.workspaceId }}</dd>
+    </div>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">Board ID</dt>
+      <dd class="govuk-summary-list__value">{{ request.boardId }}</dd>
+    </div>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">Requested by</dt>
+      <dd class="govuk-summary-list__value">{{ request.requestedBy }}</dd>
+    </div>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">Date submitted</dt>
+      <dd class="govuk-summary-list__value">{{ request.dateSubmitted }}</dd>
+    </div>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">Status</dt>
+      <dd class="govuk-summary-list__value">
+        <strong class="govuk-tag govuk-tag--yellow">Awaiting approval</strong>
+      </dd>
+    </div>
+  </dl>
+
+  <form action="/mural-chat/approve-review" method="post">
+
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+          <h2 class="govuk-fieldset__heading">Do you approve this Mural board request?</h2>
+        </legend>
+        <div class="govuk-radios" data-module="govuk-radios">
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="approve-decision" name="approve-decision" type="radio" value="approve">
+            <label class="govuk-label govuk-radios__label" for="approve-decision">
+              Yes, approve this request
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="approve-decision-2" name="approve-decision" type="radio" value="reject">
+            <label class="govuk-label govuk-radios__label" for="approve-decision-2">
+              No, reject this request
+            </label>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+
+    <button type="submit" class="govuk-button" data-module="govuk-button">Continue</button>
+
+  </form>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{#
+  Mural Board Assistant — Two-Thirds Content Layout
+
+  Wraps page content in the standard grid container.
+  Use for all standard mural-chat content pages.
+
+  Usage:
+    {% extends "layouts/mural-chat/two-thirds.njk" %}
+    {% block pageContent %}...{% endblock %}
+#}
+{% extends "layouts/mural-chat/page.njk" %}
+
+{% block content %}
+<div class="defra-width-container">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% block pageContent %}{% endblock %}
+    </div>
+  </div>
+</div>
+{% endblock %}

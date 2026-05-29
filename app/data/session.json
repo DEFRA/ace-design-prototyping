@@ -1,0 +1,28 @@
+{
+  "pending-requests": [
+    {
+      "id": "species-distribution",
+      "boardName": "Species Distribution Mapping",
+      "workspaceId": "defra-workspace-001",
+      "boardId": "mrl-9823-sdm-2026",
+      "requestedBy": "james.owen@example.com",
+      "dateSubmitted": "26 May 2026"
+    },
+    {
+      "id": "water-quality",
+      "boardName": "Water Quality Monitoring Q2",
+      "workspaceId": "defra-workspace-001",
+      "boardId": "mrl-4471-wqm-q2",
+      "requestedBy": "priya.sharma@example.com",
+      "dateSubmitted": "27 May 2026"
+    },
+    {
+      "id": "flood-risk",
+      "boardName": "Flood Risk Assessment 2026",
+      "workspaceId": "defra-workspace-002",
+      "boardId": "mrl-7834-fra-2026",
+      "requestedBy": "tom.bradley@example.com",
+      "dateSubmitted": "28 May 2026"
+    }
+  ]
+}

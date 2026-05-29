@@ -1,0 +1,49 @@
+{% extends "layouts/mural-chat/two-thirds.njk" %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% set pageTitle = "Add a board" %}
+
+{% block pageContent %}
+
+  <a href="/mural-chat/select-mural" class="govuk-back-link">Back</a>
+
+  <h1 class="govuk-heading-l">Add a Mural board</h1>
+  <p class="govuk-body">Add a board to your list so you can select it to chat about.</p>
+
+  <form action="/mural-chat/add-board" method="post">
+
+    {{ govukInput({
+      name: "new-board-name",
+      id: "new-board-name",
+      label: {
+        text: "Board name",
+        classes: "govuk-label--s"
+      },
+      hint: {
+        text: "For example, 'Q2 Roadmap Session' or 'Discovery Workshop'"
+      },
+      value: data['new-board-name']
+    }) }}
+
+    {{ govukInput({
+      name: "new-board-hint",
+      id: "new-board-hint",
+      label: {
+        text: "Description (optional)",
+        classes: "govuk-label--s"
+      },
+      hint: {
+        text: "A short note about the board, for example who led it or how many sticky notes it has"
+      },
+      value: data['new-board-hint']
+    }) }}
+
+    <div class="govuk-button-group">
+      {{ govukButton({ text: "Add board" }) }}
+      <a href="/mural-chat/select-mural" class="govuk-link">Cancel</a>
+    </div>
+
+  </form>
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "layouts/mural-chat/two-thirds.njk" %}
+
+{% set request = data['pending-requests'][0] %}
+{% set approved = data['approve-decision'] == "approve" %}
+
+{% set panelTitle  = "Board approved"  if approved else "Board rejected" %}
+{% set tagLabel    = "Approved"        if approved else "Rejected" %}
+{% set outcome     = "approved and is now available for AI-assisted analysis in this service" if approved else "rejected and will not be available in this service" %}
+{% set emailIntro  = "A confirmation email has been sent" if approved else "A notification email has been sent" %}
+{% set emailSuffix = "." if approved else " with your reason for rejection." %}
+
+{% set pageTitle = "Board " + ("approved" if approved else "rejected") %}
+
+{% block pageContent %}
+
+  <div class="govuk-panel govuk-panel--confirmation" {% if not approved %}style="background-color: #d4351c;"{% endif %}>
+    <h1 class="govuk-panel__title">{{ panelTitle }}</h1>
+    <div class="govuk-panel__body">
+      {{ request.boardName }} has been {{ "approved" if approved else "rejected" }}
+    </div>
+  </div>
+
+  <h2 class="govuk-heading-m">What happens next</h2>
+
+  <p class="govuk-body">The board has been tagged as <strong>'{{ tagLabel }}'</strong> and {{ outcome }}.</p>
+
+  <p class="govuk-body">{{ emailIntro }} to the requestor at <strong>{{ request.requestedBy }}</strong>{{ emailSuffix }}</p>
+
+  <h2 class="govuk-heading-m">What you can do now</h2>
+
+  <ul class="govuk-list govuk-list--bullet">
+    <li><a href="/mural-chat/approve-requests" class="govuk-link">Review more requests</a></li>
+    <li><a href="/mural-chat/dashboard" class="govuk-link">Return to dashboard</a></li>
+  </ul>
+
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends "layouts/mural-chat/two-thirds.njk" %}
+
+{% set pageTitle = "Request a Mural board" %}
+
+{% block pageContent %}
+
+      <a href="/mural-chat/dashboard" class="govuk-back-link">Back</a>
+
+      <h1 class="govuk-heading-l">Request a Mural board</h1>
+
+      <p class="govuk-body">Use this service to request a new Mural board to be connected. Once approved, the board will be available for AI-assisted analysis.</p>
+
+      <h2 class="govuk-heading-m">Before you start</h2>
+      <p class="govuk-body">You will need:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>the Mural workspace ID</li>
+        <li>the Mural board ID</li>
+        <li>the name or email of the Board Owner who will approve the request</li>
+      </ul>
+
+      <div class="govuk-inset-text">
+        Only service administrators can request new boards. If you are not an admin, you will need to ask one to submit the request on your behalf.
+      </div>
+
+      <h2 class="govuk-heading-m">Prototype mode</h2>
+      <p class="govuk-body">Simulate whether the current user is a service admin:</p>
+
+      <form action="/mural-chat/request-mural" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <div class="govuk-radios" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="is-admin" name="is-admin" type="radio" value="yes">
+                <label class="govuk-label govuk-radios__label" for="is-admin">
+                  User is a service admin
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="is-admin-2" name="is-admin" type="radio" value="no">
+                <label class="govuk-label govuk-radios__label" for="is-admin-2">
+                  User is not a service admin
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+{% endblock %}

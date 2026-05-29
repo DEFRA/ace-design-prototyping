@@ -1,12 +1,9 @@
-{% extends "layouts/mural-chat/page.njk" %}
+{% extends "layouts/mural-chat/full-width.njk" %}
 
 {% set pageTitle = "Dashboard" %}
+{% set containerClass = "govuk-!-margin-top-6" %}
 
-{% block content %}
-
-<div class="defra-width-container govuk-!-margin-top-6">
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
+{% block pageContent %}
 
       <h1 class="govuk-heading-xl">Dashboard</h1>
 
@@ -21,10 +18,26 @@
             </p>
           </div>
         </li>
+        <li>
+          <div class="defra-tile">
+            <h2 class="govuk-heading-s defra-tile__title">
+              <a class="defra-tile__link" href="/mural-chat/request-mural">Request a Mural board</a>
+            </h2>
+            <p class="govuk-body-s defra-tile__body">
+              Request a new Mural board to be connected to this service. Requires admin permissions and Board Owner approval.
+            </p>
+          </div>
+        </li>
+        <li>
+          <div class="defra-tile">
+            <h2 class="govuk-heading-s defra-tile__title">
+              <a class="defra-tile__link" href="/mural-chat/approve-requests">Approve Mural requests</a>
+            </h2>
+            <p class="govuk-body-s defra-tile__body">
+              Review and approve or reject outstanding Mural board requests assigned to you as Board Owner.
+            </p>
+          </div>
+        </li>
       </ul>
-
-    </div>
-  </div>
-</div>
 
 {% endblock %}

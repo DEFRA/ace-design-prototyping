@@ -1,0 +1,37 @@
+{% extends "layouts/mural-chat/full-width.njk" %}
+
+{% set pageTitle = "Mural board requests awaiting your approval" %}
+
+{% block pageContent %}
+
+  <a href="/mural-chat/dashboard" class="govuk-back-link">Back</a>
+
+  <h1 class="govuk-heading-l">Mural board requests awaiting your approval</h1>
+
+  <p class="govuk-body">These boards have been requested by service administrators and are awaiting your review as Board Owner.</p>
+
+  <table class="govuk-table">
+    <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">Outstanding Mural board requests</caption>
+    <thead class="govuk-table__head">
+      <tr class="govuk-table__row">
+        <th scope="col" class="govuk-table__header">Board name</th>
+        <th scope="col" class="govuk-table__header">Requested by</th>
+        <th scope="col" class="govuk-table__header">Date submitted</th>
+        <th scope="col" class="govuk-table__header">Action</th>
+      </tr>
+    </thead>
+    <tbody class="govuk-table__body">
+      {% for request in data['pending-requests'] %}
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell">{{ request.boardName }}</td>
+        <td class="govuk-table__cell">{{ request.requestedBy }}</td>
+        <td class="govuk-table__cell">{{ request.dateSubmitted }}</td>
+        <td class="govuk-table__cell">
+          <a href="/mural-chat/approve-review?board={{ request.id }}" class="govuk-link">Review request</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}

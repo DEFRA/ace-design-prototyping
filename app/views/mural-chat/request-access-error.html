@@ -1,0 +1,25 @@
+{% extends "layouts/mural-chat/two-thirds.njk" %}
+
+{% set pageTitle = "Access check failed" %}
+
+{% block pageContent %}
+
+      <a href="/mural-chat/request-check-answers" class="govuk-back-link">Back</a>
+
+      <h1 class="govuk-heading-l">We could not verify access to this board</h1>
+
+      {% if data['api-check'] === 'fail-user' %}
+      <p class="govuk-body">Our checks with the Mural API show that <strong>you do not have access</strong> to the board with ID <strong>{{ data['board-id'] }}</strong>.</p>
+      <p class="govuk-body">You must have access to the board before you can request it to be connected to this service.</p>
+      {% elif data['api-check'] === 'fail-iao' %}
+      <p class="govuk-body">Our checks with the Mural API show that the Board Owner (<strong>{{ data['iao-email'] }}</strong>) <strong>does not have access</strong> to the board with ID <strong>{{ data['board-id'] }}</strong>.</p>
+      <p class="govuk-body">The Board Owner must have access to the board in order to approve the request.</p>
+      {% endif %}
+
+      <h2 class="govuk-heading-m">What you can do</h2>
+      <ul class="govuk-list govuk-list--bullet">
+        <li><a href="/mural-chat/request-board-details" class="govuk-link">Change your answers and try again</a></li>
+        <li><a href="/mural-chat/dashboard" class="govuk-link">Return to dashboard</a></li>
+      </ul>
+
+{% endblock %}

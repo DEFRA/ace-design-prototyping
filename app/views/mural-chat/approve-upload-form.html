@@ -1,0 +1,31 @@
+{% extends "layouts/mural-chat/two-thirds.njk" %}
+
+{% set pageTitle = "Upload audit form" %}
+
+{% block pageContent %}
+
+      <a href="/mural-chat/approve-review" class="govuk-back-link">Back</a>
+
+      <h1 class="govuk-heading-l">Upload the completed audit form</h1>
+
+      <p class="govuk-body">As Board Owner, you must upload a completed audit form before this board can be approved. This ensures the board and its contents meet data governance requirements.</p>
+
+      <p class="govuk-body">The audit form must be completed and signed off before upload.</p>
+
+      <form action="/mural-chat/approve-upload-form" method="post" enctype="multipart/form-data">
+
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-label--m" for="data-handling-form">
+            Upload audit form
+          </label>
+          <div id="data-handling-form-hint" class="govuk-hint">
+            Upload a PDF or Word document. The file must be no larger than 10MB.
+          </div>
+          <input class="govuk-file-upload" id="data-handling-form" name="data-handling-form" type="file" aria-describedby="data-handling-form-hint" accept=".pdf,.doc,.docx">
+        </div>
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">Upload and approve board</button>
+
+      </form>
+
+{% endblock %}

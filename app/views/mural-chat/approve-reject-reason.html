@@ -1,0 +1,29 @@
+{% extends "layouts/mural-chat/two-thirds.njk" %}
+
+{% set pageTitle = "Reason for rejection" %}
+
+{% block pageContent %}
+
+      <a href="/mural-chat/approve-review" class="govuk-back-link">Back</a>
+
+      <h1 class="govuk-heading-l">Why are you rejecting this request?</h1>
+
+      <p class="govuk-body">Your reason will be included in the notification email sent to the requestor. Be clear and specific so they can understand what steps to take next.</p>
+
+      <form action="/mural-chat/approve-reject-reason" method="post">
+
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-label--m" for="reject-reason">
+            Reason for rejection
+          </label>
+          <div id="reject-reason-hint" class="govuk-hint">
+            Do not include personal or sensitive information.
+          </div>
+          <textarea class="govuk-textarea" id="reject-reason" name="reject-reason" rows="6" aria-describedby="reject-reason-hint">{{ data['reject-reason'] }}</textarea>
+        </div>
+
+        <button type="submit" class="govuk-button govuk-button--warning" data-module="govuk-button">Confirm rejection</button>
+
+      </form>
+
+{% endblock %}
