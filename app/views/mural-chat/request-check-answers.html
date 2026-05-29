@@ -44,6 +44,11 @@
 
       <form action="/mural-chat/request-check-answers" method="post">
 
+        <input type="hidden" name="board-name" value="{{ data['board-name'] }}">
+        <input type="hidden" name="workspace-id" value="{{ data['workspace-id'] }}">
+        <input type="hidden" name="board-id" value="{{ data['board-id'] }}">
+        <input type="hidden" name="iao-email" value="{{ data['iao-email'] }}">
+
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset">
             <div class="govuk-radios" data-module="govuk-radios">
